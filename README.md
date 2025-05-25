@@ -21,6 +21,7 @@ material_system/
 │   │   │   └── pg_utokyo/      # PostgreSQL コネクタ
 │   │   └── metadata/           # GraphQL スキーマ定義
 │   ├── setup_tables.sql        # データベース初期化スクリプト
+│   ├── schema_v0_4.sql         # 拡張スキーマ (v0.4)
 │   └── supergraph.yaml         # スーパーグラフ設定
 └── utokyo-credit-web/          # Next.js フロントエンド
     ├── src/
