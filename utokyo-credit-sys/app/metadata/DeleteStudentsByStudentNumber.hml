@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteStudentsByStudentNumberResponse
+  description: Responses from the 'delete_students_by_student_number' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Students!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteStudentsByStudentNumberResponse
+    inputTypeName: DeleteStudentsByStudentNumberResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: delete_students_by_student_number_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteStudentsByStudentNumberResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteStudentsByStudentNumber
+  outputType: DeleteStudentsByStudentNumberResponse!
+  arguments:
+    - name: keyStudentNumber
+      type: String_1!
+    - name: preCheck
+      type: StudentsBoolExp
+      description: Delete permission predicate over the 'students' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: delete_students_by_student_number
+    argumentMapping:
+      keyStudentNumber: key_student_number
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteStudentsByStudentNumber
+    rootFieldKind: Mutation
+  description: Delete any row on the 'students' collection using the 'student_number' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteStudentsByStudentNumber
+  permissions:
+    - role: admin
+      allowExecution: true
+

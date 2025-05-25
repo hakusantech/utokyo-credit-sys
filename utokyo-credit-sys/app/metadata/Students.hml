@@ -1,0 +1,237 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Students
+  fields:
+    - name: createdAt
+      type: Timestamptz
+    - name: department
+      type: String_1!
+    - name: email
+      type: String_1!
+    - name: entryYear
+      type: Int32!
+    - name: id
+      type: Int32!
+    - name: name
+      type: String_1!
+    - name: studentNumber
+      type: String_1!
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: Students
+    inputTypeName: StudentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: students
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        department:
+          column:
+            name: department
+        email:
+          column:
+            name: email
+        entryYear:
+          column:
+            name: entry_year
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        studentNumber:
+          column:
+            name: student_number
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Students
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - department
+          - email
+          - entryYear
+          - id
+          - name
+          - studentNumber
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: StudentsBoolExp
+  operand:
+    object:
+      type: Students
+      comparableFields:
+        - fieldName: createdAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: department
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: email
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: entryYear
+          booleanExpressionType: Int4BoolExp
+        - fieldName: id
+          booleanExpressionType: Int4BoolExp
+        - fieldName: name
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: studentNumber
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestamptzBoolExp
+      comparableRelationships:
+        - relationshipName: enrollments
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: StudentsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: StudentsAggExp
+  operand:
+    object:
+      aggregatedType: Students
+      aggregatableFields:
+        - fieldName: createdAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: department
+          aggregateExpression: VarcharAggExp
+        - fieldName: email
+          aggregateExpression: VarcharAggExp
+        - fieldName: entryYear
+          aggregateExpression: Int4AggExp
+        - fieldName: id
+          aggregateExpression: Int4AggExp
+        - fieldName: name
+          aggregateExpression: VarcharAggExp
+        - fieldName: studentNumber
+          aggregateExpression: VarcharAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestamptzAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: StudentsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: StudentsOrderByExp
+  operand:
+    object:
+      orderedType: Students
+      orderableFields:
+        - fieldName: createdAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: department
+          orderByExpression: String1OrderByExp
+        - fieldName: email
+          orderByExpression: String1OrderByExp
+        - fieldName: entryYear
+          orderByExpression: Int32OrderByExp
+        - fieldName: id
+          orderByExpression: Int32OrderByExp
+        - fieldName: name
+          orderByExpression: String1OrderByExp
+        - fieldName: studentNumber
+          orderByExpression: String1OrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestamptzOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: StudentsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Students
+  objectType: Students
+  source:
+    dataConnectorName: pg_utokyo
+    collection: students
+  filterExpressionType: StudentsBoolExp
+  aggregateExpression: StudentsAggExp
+  orderByExpression: StudentsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: students
+      subscription:
+        rootField: students
+    selectUniques:
+      - queryRootField: studentsByEmail
+        uniqueIdentifier:
+          - email
+        subscription:
+          rootField: studentsByEmail
+      - queryRootField: studentsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: studentsById
+      - queryRootField: studentsByStudentNumber
+        uniqueIdentifier:
+          - studentNumber
+        subscription:
+          rootField: studentsByStudentNumber
+    filterInputTypeName: StudentsFilterInput
+    aggregate:
+      queryRootField: studentsAggregate
+      subscription:
+        rootField: studentsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Students
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: enrollments
+  sourceType: Students
+  target:
+    model:
+      name: Enrollments
+      relationshipType: Array
+      aggregate:
+        aggregateExpression: EnrollmentsAggExp
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: studentId
+  graphql:
+    aggregateFieldName: enrollmentsAggregate
+

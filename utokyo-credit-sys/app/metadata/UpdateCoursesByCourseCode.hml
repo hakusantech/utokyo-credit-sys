@@ -1,0 +1,494 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesCourseCode
+  description: Update the 'course_code' column in the 'courses' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesCourseCode
+    inputTypeName: UpdateColumnCoursesCourseCodeInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_course_code
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesCourseCode
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesCreatedAt
+  description: Update the 'created_at' column in the 'courses' collection
+  fields:
+    - name: set
+      type: Timestamptz
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesCreatedAt
+    inputTypeName: UpdateColumnCoursesCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesCredits
+  description: Update the 'credits' column in the 'courses' collection
+  fields:
+    - name: set
+      type: Int32!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesCredits
+    inputTypeName: UpdateColumnCoursesCreditsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_credits
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesCredits
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesDepartment
+  description: Update the 'department' column in the 'courses' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesDepartment
+    inputTypeName: UpdateColumnCoursesDepartmentInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_department
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesDepartment
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesDescription
+  description: Update the 'description' column in the 'courses' collection
+  fields:
+    - name: set
+      type: String_1
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesDescription
+    inputTypeName: UpdateColumnCoursesDescriptionInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_description
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesDescription
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesId
+  description: Update the 'id' column in the 'courses' collection
+  fields:
+    - name: set
+      type: Int32!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesId
+    inputTypeName: UpdateColumnCoursesIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesInstructor
+  description: Update the 'instructor' column in the 'courses' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesInstructor
+    inputTypeName: UpdateColumnCoursesInstructorInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_instructor
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesInstructor
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesMaxStudents
+  description: Update the 'max_students' column in the 'courses' collection
+  fields:
+    - name: set
+      type: Int32
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesMaxStudents
+    inputTypeName: UpdateColumnCoursesMaxStudentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_max_students
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesMaxStudents
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesName
+  description: Update the 'name' column in the 'courses' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesName
+    inputTypeName: UpdateColumnCoursesNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnCoursesUpdatedAt
+  description: Update the 'updated_at' column in the 'courses' collection
+  fields:
+    - name: set
+      type: Timestamptz
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnCoursesUpdatedAt
+    inputTypeName: UpdateColumnCoursesUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_courses_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnCoursesUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateCoursesByCourseCodeUpdateColumns
+  description: Update the columns of the 'courses' collection
+  fields:
+    - name: courseCode
+      type: UpdateColumnCoursesCourseCode
+      description: Update the 'course_code' column in the 'courses' collection.
+    - name: createdAt
+      type: UpdateColumnCoursesCreatedAt
+      description: Update the 'created_at' column in the 'courses' collection.
+    - name: credits
+      type: UpdateColumnCoursesCredits
+      description: Update the 'credits' column in the 'courses' collection.
+    - name: department
+      type: UpdateColumnCoursesDepartment
+      description: Update the 'department' column in the 'courses' collection.
+    - name: description
+      type: UpdateColumnCoursesDescription
+      description: Update the 'description' column in the 'courses' collection.
+    - name: id
+      type: UpdateColumnCoursesId
+      description: Update the 'id' column in the 'courses' collection.
+    - name: instructor
+      type: UpdateColumnCoursesInstructor
+      description: Update the 'instructor' column in the 'courses' collection.
+    - name: maxStudents
+      type: UpdateColumnCoursesMaxStudents
+      description: Update the 'max_students' column in the 'courses' collection.
+    - name: name
+      type: UpdateColumnCoursesName
+      description: Update the 'name' column in the 'courses' collection.
+    - name: updatedAt
+      type: UpdateColumnCoursesUpdatedAt
+      description: Update the 'updated_at' column in the 'courses' collection.
+  graphql:
+    typeName: UpdateCoursesByCourseCodeUpdateColumns
+    inputTypeName: UpdateCoursesByCourseCodeUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_courses_by_course_code_update_columns
+      fieldMapping:
+        courseCode:
+          column:
+            name: course_code
+        createdAt:
+          column:
+            name: created_at
+        credits:
+          column:
+            name: credits
+        department:
+          column:
+            name: department
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        instructor:
+          column:
+            name: instructor
+        maxStudents:
+          column:
+            name: max_students
+        name:
+          column:
+            name: name
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateCoursesByCourseCodeUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseCode
+          - createdAt
+          - credits
+          - department
+          - description
+          - id
+          - instructor
+          - maxStudents
+          - name
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateCoursesByCourseCodeResponse
+  description: Responses from the 'update_courses_by_course_code' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Courses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateCoursesByCourseCodeResponse
+    inputTypeName: UpdateCoursesByCourseCodeResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_courses_by_course_code_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateCoursesByCourseCodeResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateCoursesByCourseCode
+  outputType: UpdateCoursesByCourseCodeResponse!
+  arguments:
+    - name: keyCourseCode
+      type: String_1!
+    - name: postCheck
+      type: CoursesBoolExp
+      description: Update permission post-condition predicate over the 'courses' collection
+    - name: preCheck
+      type: CoursesBoolExp
+      description: Update permission pre-condition predicate over the 'courses' collection
+    - name: updateColumns
+      type: UpdateCoursesByCourseCodeUpdateColumns!
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: update_courses_by_course_code
+    argumentMapping:
+      keyCourseCode: key_course_code
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateCoursesByCourseCode
+    rootFieldKind: Mutation
+  description: Update any row on the 'courses' collection using the 'course_code' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateCoursesByCourseCode
+  permissions:
+    - role: admin
+      allowExecution: true
+

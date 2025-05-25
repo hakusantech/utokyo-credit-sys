@@ -1,0 +1,162 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateEnrollmentsByIdUpdateColumns
+  description: Update the columns of the 'enrollments' collection
+  fields:
+    - name: courseId
+      type: UpdateColumnEnrollmentsCourseId
+      description: Update the 'course_id' column in the 'enrollments' collection.
+    - name: createdAt
+      type: UpdateColumnEnrollmentsCreatedAt
+      description: Update the 'created_at' column in the 'enrollments' collection.
+    - name: enrollmentDate
+      type: UpdateColumnEnrollmentsEnrollmentDate
+      description: Update the 'enrollment_date' column in the 'enrollments' collection.
+    - name: grade
+      type: UpdateColumnEnrollmentsGrade
+      description: Update the 'grade' column in the 'enrollments' collection.
+    - name: id
+      type: UpdateColumnEnrollmentsId
+      description: Update the 'id' column in the 'enrollments' collection.
+    - name: status
+      type: UpdateColumnEnrollmentsStatus
+      description: Update the 'status' column in the 'enrollments' collection.
+    - name: studentId
+      type: UpdateColumnEnrollmentsStudentId
+      description: Update the 'student_id' column in the 'enrollments' collection.
+    - name: updatedAt
+      type: UpdateColumnEnrollmentsUpdatedAt
+      description: Update the 'updated_at' column in the 'enrollments' collection.
+  graphql:
+    typeName: UpdateEnrollmentsByIdUpdateColumns
+    inputTypeName: UpdateEnrollmentsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_enrollments_by_id_update_columns
+      fieldMapping:
+        courseId:
+          column:
+            name: course_id
+        createdAt:
+          column:
+            name: created_at
+        enrollmentDate:
+          column:
+            name: enrollment_date
+        grade:
+          column:
+            name: grade
+        id:
+          column:
+            name: id
+        status:
+          column:
+            name: status
+        studentId:
+          column:
+            name: student_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateEnrollmentsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseId
+          - createdAt
+          - enrollmentDate
+          - grade
+          - id
+          - status
+          - studentId
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateEnrollmentsByIdResponse
+  description: Responses from the 'update_enrollments_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Enrollments!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateEnrollmentsByIdResponse
+    inputTypeName: UpdateEnrollmentsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_enrollments_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateEnrollmentsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateEnrollmentsById
+  outputType: UpdateEnrollmentsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int32!
+    - name: postCheck
+      type: EnrollmentsBoolExp
+      description: Update permission post-condition predicate over the 'enrollments'
+        collection
+    - name: preCheck
+      type: EnrollmentsBoolExp
+      description: Update permission pre-condition predicate over the 'enrollments'
+        collection
+    - name: updateColumns
+      type: UpdateEnrollmentsByIdUpdateColumns!
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: update_enrollments_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateEnrollmentsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'enrollments' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateEnrollmentsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

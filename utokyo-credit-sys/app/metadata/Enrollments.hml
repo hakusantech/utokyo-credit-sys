@@ -1,0 +1,250 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Enrollments
+  fields:
+    - name: courseId
+      type: Int32
+    - name: createdAt
+      type: Timestamptz
+    - name: enrollmentDate
+      type: Timestamptz
+    - name: grade
+      type: String_1
+    - name: id
+      type: Int32!
+    - name: status
+      type: String_1
+    - name: studentId
+      type: Int32
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: Enrollments
+    inputTypeName: EnrollmentsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: enrollments
+      fieldMapping:
+        courseId:
+          column:
+            name: course_id
+        createdAt:
+          column:
+            name: created_at
+        enrollmentDate:
+          column:
+            name: enrollment_date
+        grade:
+          column:
+            name: grade
+        id:
+          column:
+            name: id
+        status:
+          column:
+            name: status
+        studentId:
+          column:
+            name: student_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Enrollments
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseId
+          - createdAt
+          - enrollmentDate
+          - grade
+          - id
+          - status
+          - studentId
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: EnrollmentsBoolExp
+  operand:
+    object:
+      type: Enrollments
+      comparableFields:
+        - fieldName: courseId
+          booleanExpressionType: Int4BoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: enrollmentDate
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: grade
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: id
+          booleanExpressionType: Int4BoolExp
+        - fieldName: status
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: studentId
+          booleanExpressionType: Int4BoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestamptzBoolExp
+      comparableRelationships:
+        - relationshipName: course
+        - relationshipName: student
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: EnrollmentsBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: EnrollmentsAggExp
+  operand:
+    object:
+      aggregatedType: Enrollments
+      aggregatableFields:
+        - fieldName: courseId
+          aggregateExpression: Int4AggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: enrollmentDate
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: grade
+          aggregateExpression: VarcharAggExp
+        - fieldName: id
+          aggregateExpression: Int4AggExp
+        - fieldName: status
+          aggregateExpression: VarcharAggExp
+        - fieldName: studentId
+          aggregateExpression: Int4AggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestamptzAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: EnrollmentsAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: EnrollmentsOrderByExp
+  operand:
+    object:
+      orderedType: Enrollments
+      orderableFields:
+        - fieldName: courseId
+          orderByExpression: Int32OrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: enrollmentDate
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: grade
+          orderByExpression: String1OrderByExp
+        - fieldName: id
+          orderByExpression: Int32OrderByExp
+        - fieldName: status
+          orderByExpression: String1OrderByExp
+        - fieldName: studentId
+          orderByExpression: Int32OrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestamptzOrderByExp
+      orderableRelationships:
+        - relationshipName: course
+        - relationshipName: student
+  graphql:
+    expressionTypeName: EnrollmentsOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Enrollments
+  objectType: Enrollments
+  source:
+    dataConnectorName: pg_utokyo
+    collection: enrollments
+  filterExpressionType: EnrollmentsBoolExp
+  aggregateExpression: EnrollmentsAggExp
+  orderByExpression: EnrollmentsOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: enrollments
+      subscription:
+        rootField: enrollments
+    selectUniques:
+      - queryRootField: enrollmentsById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: enrollmentsById
+      - queryRootField: enrollmentsByEnrollmentsStudentIdCourseIdKey
+        uniqueIdentifier:
+          - courseId
+          - studentId
+        subscription:
+          rootField: enrollmentsByEnrollmentsStudentIdCourseIdKey
+    filterInputTypeName: EnrollmentsFilterInput
+    aggregate:
+      queryRootField: enrollmentsAggregate
+      subscription:
+        rootField: enrollmentsAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Enrollments
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: course
+  sourceType: Enrollments
+  target:
+    model:
+      name: Courses
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: courseId
+      target:
+        modelField:
+          - fieldName: id
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: student
+  sourceType: Enrollments
+  target:
+    model:
+      name: Students
+      relationshipType: Object
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: studentId
+      target:
+        modelField:
+          - fieldName: id
+

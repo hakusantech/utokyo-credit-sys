@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteCoursesByCourseCodeResponse
+  description: Responses from the 'delete_courses_by_course_code' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Courses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteCoursesByCourseCodeResponse
+    inputTypeName: DeleteCoursesByCourseCodeResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: delete_courses_by_course_code_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteCoursesByCourseCodeResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteCoursesByCourseCode
+  outputType: DeleteCoursesByCourseCodeResponse!
+  arguments:
+    - name: keyCourseCode
+      type: String_1!
+    - name: preCheck
+      type: CoursesBoolExp
+      description: Delete permission predicate over the 'courses' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: delete_courses_by_course_code
+    argumentMapping:
+      keyCourseCode: key_course_code
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteCoursesByCourseCode
+    rootFieldKind: Mutation
+  description: Delete any row on the 'courses' collection using the 'course_code' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteCoursesByCourseCode
+  permissions:
+    - role: admin
+      allowExecution: true
+

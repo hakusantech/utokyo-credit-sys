@@ -1,0 +1,160 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateStudentsByIdUpdateColumns
+  description: Update the columns of the 'students' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnStudentsCreatedAt
+      description: Update the 'created_at' column in the 'students' collection.
+    - name: department
+      type: UpdateColumnStudentsDepartment
+      description: Update the 'department' column in the 'students' collection.
+    - name: email
+      type: UpdateColumnStudentsEmail
+      description: Update the 'email' column in the 'students' collection.
+    - name: entryYear
+      type: UpdateColumnStudentsEntryYear
+      description: Update the 'entry_year' column in the 'students' collection.
+    - name: id
+      type: UpdateColumnStudentsId
+      description: Update the 'id' column in the 'students' collection.
+    - name: name
+      type: UpdateColumnStudentsName
+      description: Update the 'name' column in the 'students' collection.
+    - name: studentNumber
+      type: UpdateColumnStudentsStudentNumber
+      description: Update the 'student_number' column in the 'students' collection.
+    - name: updatedAt
+      type: UpdateColumnStudentsUpdatedAt
+      description: Update the 'updated_at' column in the 'students' collection.
+  graphql:
+    typeName: UpdateStudentsByIdUpdateColumns
+    inputTypeName: UpdateStudentsByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_students_by_id_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        department:
+          column:
+            name: department
+        email:
+          column:
+            name: email
+        entryYear:
+          column:
+            name: entry_year
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        studentNumber:
+          column:
+            name: student_number
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateStudentsByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - department
+          - email
+          - entryYear
+          - id
+          - name
+          - studentNumber
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateStudentsByIdResponse
+  description: Responses from the 'update_students_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Students!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateStudentsByIdResponse
+    inputTypeName: UpdateStudentsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_students_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateStudentsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateStudentsById
+  outputType: UpdateStudentsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int32!
+    - name: postCheck
+      type: StudentsBoolExp
+      description: Update permission post-condition predicate over the 'students' collection
+    - name: preCheck
+      type: StudentsBoolExp
+      description: Update permission pre-condition predicate over the 'students' collection
+    - name: updateColumns
+      type: UpdateStudentsByIdUpdateColumns!
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: update_students_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateStudentsById
+    rootFieldKind: Mutation
+  description: Update any row on the 'students' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateStudentsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

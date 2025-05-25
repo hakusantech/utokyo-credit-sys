@@ -1,0 +1,76 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteEnrollmentsByCourseIdAndStudentIdResponse
+  description: Responses from the 'delete_enrollments_by_course_id_and_student_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Enrollments!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteEnrollmentsByCourseIdAndStudentIdResponse
+    inputTypeName: DeleteEnrollmentsByCourseIdAndStudentIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: delete_enrollments_by_course_id_and_student_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteEnrollmentsByCourseIdAndStudentIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteEnrollmentsByCourseIdAndStudentId
+  outputType: DeleteEnrollmentsByCourseIdAndStudentIdResponse!
+  arguments:
+    - name: keyCourseId
+      type: Int32
+    - name: keyStudentId
+      type: Int32
+    - name: preCheck
+      type: EnrollmentsBoolExp
+      description: Delete permission predicate over the 'enrollments' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: delete_enrollments_by_course_id_and_student_id
+    argumentMapping:
+      keyCourseId: key_course_id
+      keyStudentId: key_student_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteEnrollmentsByCourseIdAndStudentId
+    rootFieldKind: Mutation
+  description: Delete any row on the 'enrollments' collection using the
+    'course_id' and 'student_id' keys
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteEnrollmentsByCourseIdAndStudentId
+  permissions:
+    - role: admin
+      allowExecution: true
+

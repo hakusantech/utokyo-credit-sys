@@ -1,0 +1,256 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Courses
+  fields:
+    - name: courseCode
+      type: String_1!
+    - name: createdAt
+      type: Timestamptz
+    - name: credits
+      type: Int32!
+    - name: department
+      type: String_1!
+    - name: description
+      type: String_1
+    - name: id
+      type: Int32!
+    - name: instructor
+      type: String_1!
+    - name: maxStudents
+      type: Int32
+    - name: name
+      type: String_1!
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: Courses
+    inputTypeName: CoursesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: courses
+      fieldMapping:
+        courseCode:
+          column:
+            name: course_code
+        createdAt:
+          column:
+            name: created_at
+        credits:
+          column:
+            name: credits
+        department:
+          column:
+            name: department
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        instructor:
+          column:
+            name: instructor
+        maxStudents:
+          column:
+            name: max_students
+        name:
+          column:
+            name: name
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Courses
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseCode
+          - createdAt
+          - credits
+          - department
+          - description
+          - id
+          - instructor
+          - maxStudents
+          - name
+          - updatedAt
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: CoursesBoolExp
+  operand:
+    object:
+      type: Courses
+      comparableFields:
+        - fieldName: courseCode
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: createdAt
+          booleanExpressionType: TimestamptzBoolExp
+        - fieldName: credits
+          booleanExpressionType: Int4BoolExp
+        - fieldName: department
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: description
+          booleanExpressionType: TextBoolExp
+        - fieldName: id
+          booleanExpressionType: Int4BoolExp
+        - fieldName: instructor
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: maxStudents
+          booleanExpressionType: Int4BoolExp
+        - fieldName: name
+          booleanExpressionType: VarcharBoolExp
+        - fieldName: updatedAt
+          booleanExpressionType: TimestamptzBoolExp
+      comparableRelationships:
+        - relationshipName: enrollments
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: CoursesBoolExp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: CoursesAggExp
+  operand:
+    object:
+      aggregatedType: Courses
+      aggregatableFields:
+        - fieldName: courseCode
+          aggregateExpression: VarcharAggExp
+        - fieldName: createdAt
+          aggregateExpression: TimestamptzAggExp
+        - fieldName: credits
+          aggregateExpression: Int4AggExp
+        - fieldName: department
+          aggregateExpression: VarcharAggExp
+        - fieldName: description
+          aggregateExpression: TextAggExp
+        - fieldName: id
+          aggregateExpression: Int4AggExp
+        - fieldName: instructor
+          aggregateExpression: VarcharAggExp
+        - fieldName: maxStudents
+          aggregateExpression: Int4AggExp
+        - fieldName: name
+          aggregateExpression: VarcharAggExp
+        - fieldName: updatedAt
+          aggregateExpression: TimestamptzAggExp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: CoursesAggExp
+
+---
+kind: OrderByExpression
+version: v1
+definition:
+  name: CoursesOrderByExp
+  operand:
+    object:
+      orderedType: Courses
+      orderableFields:
+        - fieldName: courseCode
+          orderByExpression: String1OrderByExp
+        - fieldName: createdAt
+          orderByExpression: TimestamptzOrderByExp
+        - fieldName: credits
+          orderByExpression: Int32OrderByExp
+        - fieldName: department
+          orderByExpression: String1OrderByExp
+        - fieldName: description
+          orderByExpression: String1OrderByExp
+        - fieldName: id
+          orderByExpression: Int32OrderByExp
+        - fieldName: instructor
+          orderByExpression: String1OrderByExp
+        - fieldName: maxStudents
+          orderByExpression: Int32OrderByExp
+        - fieldName: name
+          orderByExpression: String1OrderByExp
+        - fieldName: updatedAt
+          orderByExpression: TimestamptzOrderByExp
+      orderableRelationships: []
+  graphql:
+    expressionTypeName: CoursesOrderByExp
+
+---
+kind: Model
+version: v2
+definition:
+  name: Courses
+  objectType: Courses
+  source:
+    dataConnectorName: pg_utokyo
+    collection: courses
+  filterExpressionType: CoursesBoolExp
+  aggregateExpression: CoursesAggExp
+  orderByExpression: CoursesOrderByExp
+  graphql:
+    selectMany:
+      queryRootField: courses
+      subscription:
+        rootField: courses
+    selectUniques:
+      - queryRootField: coursesByCourseCode
+        uniqueIdentifier:
+          - courseCode
+        subscription:
+          rootField: coursesByCourseCode
+      - queryRootField: coursesById
+        uniqueIdentifier:
+          - id
+        subscription:
+          rootField: coursesById
+    filterInputTypeName: CoursesFilterInput
+    aggregate:
+      queryRootField: coursesAggregate
+      subscription:
+        rootField: coursesAggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Courses
+  permissions:
+    - role: admin
+      select:
+        filter: null
+        allowSubscriptions: true
+
+---
+kind: Relationship
+version: v1
+definition:
+  name: enrollments
+  sourceType: Courses
+  target:
+    model:
+      name: Enrollments
+      relationshipType: Array
+      aggregate:
+        aggregateExpression: EnrollmentsAggExp
+  mapping:
+    - source:
+        fieldPath:
+          - fieldName: id
+      target:
+        modelField:
+          - fieldName: courseId
+  graphql:
+    aggregateFieldName: enrollmentsAggregate
+

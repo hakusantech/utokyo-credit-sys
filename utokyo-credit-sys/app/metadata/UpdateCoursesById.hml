@@ -1,0 +1,174 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateCoursesByIdUpdateColumns
+  description: Update the columns of the 'courses' collection
+  fields:
+    - name: courseCode
+      type: UpdateColumnCoursesCourseCode
+      description: Update the 'course_code' column in the 'courses' collection.
+    - name: createdAt
+      type: UpdateColumnCoursesCreatedAt
+      description: Update the 'created_at' column in the 'courses' collection.
+    - name: credits
+      type: UpdateColumnCoursesCredits
+      description: Update the 'credits' column in the 'courses' collection.
+    - name: department
+      type: UpdateColumnCoursesDepartment
+      description: Update the 'department' column in the 'courses' collection.
+    - name: description
+      type: UpdateColumnCoursesDescription
+      description: Update the 'description' column in the 'courses' collection.
+    - name: id
+      type: UpdateColumnCoursesId
+      description: Update the 'id' column in the 'courses' collection.
+    - name: instructor
+      type: UpdateColumnCoursesInstructor
+      description: Update the 'instructor' column in the 'courses' collection.
+    - name: maxStudents
+      type: UpdateColumnCoursesMaxStudents
+      description: Update the 'max_students' column in the 'courses' collection.
+    - name: name
+      type: UpdateColumnCoursesName
+      description: Update the 'name' column in the 'courses' collection.
+    - name: updatedAt
+      type: UpdateColumnCoursesUpdatedAt
+      description: Update the 'updated_at' column in the 'courses' collection.
+  graphql:
+    typeName: UpdateCoursesByIdUpdateColumns
+    inputTypeName: UpdateCoursesByIdUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_courses_by_id_update_columns
+      fieldMapping:
+        courseCode:
+          column:
+            name: course_code
+        createdAt:
+          column:
+            name: created_at
+        credits:
+          column:
+            name: credits
+        department:
+          column:
+            name: department
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        instructor:
+          column:
+            name: instructor
+        maxStudents:
+          column:
+            name: max_students
+        name:
+          column:
+            name: name
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateCoursesByIdUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseCode
+          - createdAt
+          - credits
+          - department
+          - description
+          - id
+          - instructor
+          - maxStudents
+          - name
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateCoursesByIdResponse
+  description: Responses from the 'update_courses_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Courses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateCoursesByIdResponse
+    inputTypeName: UpdateCoursesByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_courses_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateCoursesByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateCoursesById
+  outputType: UpdateCoursesByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int32!
+    - name: postCheck
+      type: CoursesBoolExp
+      description: Update permission post-condition predicate over the 'courses' collection
+    - name: preCheck
+      type: CoursesBoolExp
+      description: Update permission pre-condition predicate over the 'courses' collection
+    - name: updateColumns
+      type: UpdateCoursesByIdUpdateColumns!
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: update_courses_by_id
+    argumentMapping:
+      keyId: key_id
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateCoursesById
+    rootFieldKind: Mutation
+  description: Update any row on the 'courses' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateCoursesById
+  permissions:
+    - role: admin
+      allowExecution: true
+

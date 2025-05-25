@@ -1,0 +1,144 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertStudentsObject
+  fields:
+    - name: createdAt
+      type: Timestamptz
+    - name: department
+      type: String_1!
+    - name: email
+      type: String_1!
+    - name: entryYear
+      type: Int32!
+    - name: id
+      type: Int32
+    - name: name
+      type: String_1!
+    - name: studentNumber
+      type: String_1!
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: InsertStudentsObject
+    inputTypeName: InsertStudentsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_students_object
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        department:
+          column:
+            name: department
+        email:
+          column:
+            name: email
+        entryYear:
+          column:
+            name: entry_year
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        studentNumber:
+          column:
+            name: student_number
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertStudentsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - department
+          - email
+          - entryYear
+          - id
+          - name
+          - studentNumber
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertStudentsResponse
+  description: Responses from the 'insert_students' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Students!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertStudentsResponse
+    inputTypeName: InsertStudentsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_students_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertStudentsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertStudents
+  outputType: InsertStudentsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertStudentsObject!]!"
+    - name: postCheck
+      type: StudentsBoolExp
+      description: Insert permission predicate over the 'students' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: insert_students
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertStudents
+    rootFieldKind: Mutation
+  description: Insert into the students table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertStudents
+  permissions:
+    - role: admin
+      allowExecution: true
+

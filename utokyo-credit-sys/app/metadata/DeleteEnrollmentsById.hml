@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteEnrollmentsByIdResponse
+  description: Responses from the 'delete_enrollments_by_id' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Enrollments!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteEnrollmentsByIdResponse
+    inputTypeName: DeleteEnrollmentsByIdResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: delete_enrollments_by_id_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteEnrollmentsByIdResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteEnrollmentsById
+  outputType: DeleteEnrollmentsByIdResponse!
+  arguments:
+    - name: keyId
+      type: Int32!
+    - name: preCheck
+      type: EnrollmentsBoolExp
+      description: Delete permission predicate over the 'enrollments' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: delete_enrollments_by_id
+    argumentMapping:
+      keyId: key_id
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteEnrollmentsById
+    rootFieldKind: Mutation
+  description: Delete any row on the 'enrollments' collection using the 'id' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteEnrollmentsById
+  permissions:
+    - role: admin
+      allowExecution: true
+

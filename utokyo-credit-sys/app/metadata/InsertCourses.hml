@@ -1,0 +1,156 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertCoursesObject
+  fields:
+    - name: courseCode
+      type: String_1!
+    - name: createdAt
+      type: Timestamptz
+    - name: credits
+      type: Int32!
+    - name: department
+      type: String_1!
+    - name: description
+      type: String_1
+    - name: id
+      type: Int32
+    - name: instructor
+      type: String_1!
+    - name: maxStudents
+      type: Int32
+    - name: name
+      type: String_1!
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: InsertCoursesObject
+    inputTypeName: InsertCoursesObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_courses_object
+      fieldMapping:
+        courseCode:
+          column:
+            name: course_code
+        createdAt:
+          column:
+            name: created_at
+        credits:
+          column:
+            name: credits
+        department:
+          column:
+            name: department
+        description:
+          column:
+            name: description
+        id:
+          column:
+            name: id
+        instructor:
+          column:
+            name: instructor
+        maxStudents:
+          column:
+            name: max_students
+        name:
+          column:
+            name: name
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertCoursesObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseCode
+          - createdAt
+          - credits
+          - department
+          - description
+          - id
+          - instructor
+          - maxStudents
+          - name
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertCoursesResponse
+  description: Responses from the 'insert_courses' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Courses!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertCoursesResponse
+    inputTypeName: InsertCoursesResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_courses_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertCoursesResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertCourses
+  outputType: InsertCoursesResponse!
+  arguments:
+    - name: objects
+      type: "[InsertCoursesObject!]!"
+    - name: postCheck
+      type: CoursesBoolExp
+      description: Insert permission predicate over the 'courses' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: insert_courses
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertCourses
+    rootFieldKind: Mutation
+  description: Insert into the courses table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertCourses
+  permissions:
+    - role: admin
+      allowExecution: true
+

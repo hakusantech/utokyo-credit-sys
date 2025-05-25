@@ -1,0 +1,144 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertEnrollmentsObject
+  fields:
+    - name: courseId
+      type: Int32
+    - name: createdAt
+      type: Timestamptz
+    - name: enrollmentDate
+      type: Timestamptz
+    - name: grade
+      type: String_1
+    - name: id
+      type: Int32
+    - name: status
+      type: String_1
+    - name: studentId
+      type: Int32
+    - name: updatedAt
+      type: Timestamptz
+  graphql:
+    typeName: InsertEnrollmentsObject
+    inputTypeName: InsertEnrollmentsObjectInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_enrollments_object
+      fieldMapping:
+        courseId:
+          column:
+            name: course_id
+        createdAt:
+          column:
+            name: created_at
+        enrollmentDate:
+          column:
+            name: enrollment_date
+        grade:
+          column:
+            name: grade
+        id:
+          column:
+            name: id
+        status:
+          column:
+            name: status
+        studentId:
+          column:
+            name: student_id
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertEnrollmentsObject
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - courseId
+          - createdAt
+          - enrollmentDate
+          - grade
+          - id
+          - status
+          - studentId
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: InsertEnrollmentsResponse
+  description: Responses from the 'insert_enrollments' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Enrollments!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: InsertEnrollmentsResponse
+    inputTypeName: InsertEnrollmentsResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: insert_enrollments_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: InsertEnrollmentsResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: InsertEnrollments
+  outputType: InsertEnrollmentsResponse!
+  arguments:
+    - name: objects
+      type: "[InsertEnrollmentsObject!]!"
+    - name: postCheck
+      type: EnrollmentsBoolExp
+      description: Insert permission predicate over the 'enrollments' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: insert_enrollments
+    argumentMapping:
+      objects: objects
+      postCheck: post_check
+  graphql:
+    rootFieldName: insertEnrollments
+    rootFieldKind: Mutation
+  description: Insert into the enrollments table
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: InsertEnrollments
+  permissions:
+    - role: admin
+      allowExecution: true
+

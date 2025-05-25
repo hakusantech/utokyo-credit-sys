@@ -1,0 +1,2236 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: pg_utokyo
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_PG_UTOKYO_READ_URL
+      write:
+        valueFromEnv: APP_PG_UTOKYO_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_PG_UTOKYO_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        int4:
+          representation:
+            type: int32
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            bit_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            bit_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            bit_xor:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: int4
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: int4
+                type: named
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                name: int4
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: int4
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: int4
+                type: named
+        int8:
+          representation:
+            type: int64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            bit_and:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            bit_or:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            bit_xor:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: int8
+                  type: named
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: int8
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: int8
+                type: named
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                name: int8
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: int8
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: int8
+                type: named
+        numeric:
+          representation:
+            type: bigdecimal
+          aggregate_functions:
+            avg:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            stddev_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            sum:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            var_pop:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            var_samp:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+            variance:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: numeric
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: numeric
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: numeric
+                type: named
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                name: numeric
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: numeric
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: numeric
+                type: named
+        text:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _ilike:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _in:
+              type: in
+            _iregex:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _like:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _lt:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _nilike:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _niregex:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _nlike:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _nregex:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            _regex:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            starts_with:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+            ts_match_tt:
+              type: custom
+              argument_type:
+                name: text
+                type: named
+        timestamptz:
+          representation:
+            type: timestamptz
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: timestamptz
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: timestamptz
+                type: named
+            _in:
+              type: in
+            _lt:
+              type: custom
+              argument_type:
+                name: timestamptz
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: timestamptz
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: timestamptz
+                type: named
+        varchar:
+          representation:
+            type: string
+          aggregate_functions:
+            max:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+            min:
+              result_type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _gte:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _ilike:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _in:
+              type: in
+            _iregex:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _like:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _lt:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _lte:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _neq:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _nilike:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _niregex:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _nlike:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _nregex:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            _regex:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            starts_with:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+            ts_match_tt:
+              type: custom
+              argument_type:
+                name: varchar
+                type: named
+      object_types:
+        courses:
+          fields:
+            course_code:
+              type:
+                name: varchar
+                type: named
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            credits:
+              type:
+                name: int4
+                type: named
+            department:
+              type:
+                name: varchar
+                type: named
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+            id:
+              type:
+                name: int4
+                type: named
+            instructor:
+              type:
+                name: varchar
+                type: named
+            max_students:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            name:
+              type:
+                name: varchar
+                type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        delete_courses_by_course_code_response:
+          description: Responses from the 'delete_courses_by_course_code' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: courses
+                  type: named
+                type: array
+        delete_courses_by_id_response:
+          description: Responses from the 'delete_courses_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: courses
+                  type: named
+                type: array
+        delete_enrollments_by_course_id_and_student_id_response:
+          description: Responses from the 'delete_enrollments_by_course_id_and_student_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: enrollments
+                  type: named
+                type: array
+        delete_enrollments_by_id_response:
+          description: Responses from the 'delete_enrollments_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: enrollments
+                  type: named
+                type: array
+        delete_students_by_email_response:
+          description: Responses from the 'delete_students_by_email' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        delete_students_by_id_response:
+          description: Responses from the 'delete_students_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        delete_students_by_student_number_response:
+          description: Responses from the 'delete_students_by_student_number' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        enrollments:
+          fields:
+            course_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            enrollment_date:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            grade:
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+            id:
+              type:
+                name: int4
+                type: named
+            status:
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+            student_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        insert_courses_object:
+          fields:
+            course_code:
+              type:
+                name: varchar
+                type: named
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            credits:
+              type:
+                name: int4
+                type: named
+            department:
+              type:
+                name: varchar
+                type: named
+            description:
+              type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            instructor:
+              type:
+                name: varchar
+                type: named
+            max_students:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            name:
+              type:
+                name: varchar
+                type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        insert_courses_response:
+          description: Responses from the 'insert_courses' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: courses
+                  type: named
+                type: array
+        insert_enrollments_object:
+          fields:
+            course_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            enrollment_date:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            grade:
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            status:
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+            student_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        insert_enrollments_response:
+          description: Responses from the 'insert_enrollments' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: enrollments
+                  type: named
+                type: array
+        insert_students_object:
+          fields:
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            department:
+              type:
+                name: varchar
+                type: named
+            email:
+              type:
+                name: varchar
+                type: named
+            entry_year:
+              type:
+                name: int4
+                type: named
+            id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            name:
+              type:
+                name: varchar
+                type: named
+            student_number:
+              type:
+                name: varchar
+                type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        insert_students_response:
+          description: Responses from the 'insert_students' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        students:
+          fields:
+            created_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+            department:
+              type:
+                name: varchar
+                type: named
+            email:
+              type:
+                name: varchar
+                type: named
+            entry_year:
+              type:
+                name: int4
+                type: named
+            id:
+              type:
+                name: int4
+                type: named
+            name:
+              type:
+                name: varchar
+                type: named
+            student_number:
+              type:
+                name: varchar
+                type: named
+            updated_at:
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_courses_course_code:
+          description: Update the 'course_code' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_courses_created_at:
+          description: Update the 'created_at' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_courses_credits:
+          description: Update the 'credits' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: int4
+                type: named
+        update_column_courses_department:
+          description: Update the 'department' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_courses_description:
+          description: Update the 'description' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: text
+                  type: named
+        update_column_courses_id:
+          description: Update the 'id' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: int4
+                type: named
+        update_column_courses_instructor:
+          description: Update the 'instructor' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_courses_max_students:
+          description: Update the 'max_students' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+        update_column_courses_name:
+          description: Update the 'name' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_courses_updated_at:
+          description: Update the 'updated_at' column in the 'courses' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_enrollments_course_id:
+          description: Update the 'course_id' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+        update_column_enrollments_created_at:
+          description: Update the 'created_at' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_enrollments_enrollment_date:
+          description: Update the 'enrollment_date' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_enrollments_grade:
+          description: Update the 'grade' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+        update_column_enrollments_id:
+          description: Update the 'id' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: int4
+                type: named
+        update_column_enrollments_status:
+          description: Update the 'status' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: varchar
+                  type: named
+        update_column_enrollments_student_id:
+          description: Update the 'student_id' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+        update_column_enrollments_updated_at:
+          description: Update the 'updated_at' column in the 'enrollments' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_students_created_at:
+          description: Update the 'created_at' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_column_students_department:
+          description: Update the 'department' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_students_email:
+          description: Update the 'email' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_students_entry_year:
+          description: Update the 'entry_year' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: int4
+                type: named
+        update_column_students_id:
+          description: Update the 'id' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: int4
+                type: named
+        update_column_students_name:
+          description: Update the 'name' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_students_student_number:
+          description: Update the 'student_number' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                name: varchar
+                type: named
+        update_column_students_updated_at:
+          description: Update the 'updated_at' column in the 'students' collection
+          fields:
+            _set:
+              description: Set the column to this value
+              type:
+                type: nullable
+                underlying_type:
+                  name: timestamptz
+                  type: named
+        update_courses_by_course_code_response:
+          description: Responses from the 'update_courses_by_course_code' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: courses
+                  type: named
+                type: array
+        update_courses_by_course_code_update_columns:
+          description: Update the columns of the 'courses' collection
+          fields:
+            course_code:
+              description: Update the 'course_code' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_course_code
+                  type: named
+            created_at:
+              description: Update the 'created_at' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_created_at
+                  type: named
+            credits:
+              description: Update the 'credits' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_credits
+                  type: named
+            department:
+              description: Update the 'department' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_department
+                  type: named
+            description:
+              description: Update the 'description' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_description
+                  type: named
+            id:
+              description: Update the 'id' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_id
+                  type: named
+            instructor:
+              description: Update the 'instructor' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_instructor
+                  type: named
+            max_students:
+              description: Update the 'max_students' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_max_students
+                  type: named
+            name:
+              description: Update the 'name' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_name
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_updated_at
+                  type: named
+        update_courses_by_id_response:
+          description: Responses from the 'update_courses_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: courses
+                  type: named
+                type: array
+        update_courses_by_id_update_columns:
+          description: Update the columns of the 'courses' collection
+          fields:
+            course_code:
+              description: Update the 'course_code' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_course_code
+                  type: named
+            created_at:
+              description: Update the 'created_at' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_created_at
+                  type: named
+            credits:
+              description: Update the 'credits' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_credits
+                  type: named
+            department:
+              description: Update the 'department' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_department
+                  type: named
+            description:
+              description: Update the 'description' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_description
+                  type: named
+            id:
+              description: Update the 'id' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_id
+                  type: named
+            instructor:
+              description: Update the 'instructor' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_instructor
+                  type: named
+            max_students:
+              description: Update the 'max_students' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_max_students
+                  type: named
+            name:
+              description: Update the 'name' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_name
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'courses' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_courses_updated_at
+                  type: named
+        update_enrollments_by_course_id_and_student_id_response:
+          description: Responses from the 'update_enrollments_by_course_id_and_student_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: enrollments
+                  type: named
+                type: array
+        update_enrollments_by_course_id_and_student_id_update_columns:
+          description: Update the columns of the 'enrollments' collection
+          fields:
+            course_id:
+              description: Update the 'course_id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_course_id
+                  type: named
+            created_at:
+              description: Update the 'created_at' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_created_at
+                  type: named
+            enrollment_date:
+              description: Update the 'enrollment_date' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_enrollment_date
+                  type: named
+            grade:
+              description: Update the 'grade' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_grade
+                  type: named
+            id:
+              description: Update the 'id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_id
+                  type: named
+            status:
+              description: Update the 'status' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_status
+                  type: named
+            student_id:
+              description: Update the 'student_id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_student_id
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_updated_at
+                  type: named
+        update_enrollments_by_id_response:
+          description: Responses from the 'update_enrollments_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: enrollments
+                  type: named
+                type: array
+        update_enrollments_by_id_update_columns:
+          description: Update the columns of the 'enrollments' collection
+          fields:
+            course_id:
+              description: Update the 'course_id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_course_id
+                  type: named
+            created_at:
+              description: Update the 'created_at' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_created_at
+                  type: named
+            enrollment_date:
+              description: Update the 'enrollment_date' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_enrollment_date
+                  type: named
+            grade:
+              description: Update the 'grade' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_grade
+                  type: named
+            id:
+              description: Update the 'id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_id
+                  type: named
+            status:
+              description: Update the 'status' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_status
+                  type: named
+            student_id:
+              description: Update the 'student_id' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_student_id
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'enrollments' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_enrollments_updated_at
+                  type: named
+        update_students_by_email_response:
+          description: Responses from the 'update_students_by_email' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        update_students_by_email_update_columns:
+          description: Update the columns of the 'students' collection
+          fields:
+            created_at:
+              description: Update the 'created_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_created_at
+                  type: named
+            department:
+              description: Update the 'department' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_department
+                  type: named
+            email:
+              description: Update the 'email' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_email
+                  type: named
+            entry_year:
+              description: Update the 'entry_year' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_entry_year
+                  type: named
+            id:
+              description: Update the 'id' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_id
+                  type: named
+            name:
+              description: Update the 'name' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_name
+                  type: named
+            student_number:
+              description: Update the 'student_number' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_student_number
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_updated_at
+                  type: named
+        update_students_by_id_response:
+          description: Responses from the 'update_students_by_id' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        update_students_by_id_update_columns:
+          description: Update the columns of the 'students' collection
+          fields:
+            created_at:
+              description: Update the 'created_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_created_at
+                  type: named
+            department:
+              description: Update the 'department' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_department
+                  type: named
+            email:
+              description: Update the 'email' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_email
+                  type: named
+            entry_year:
+              description: Update the 'entry_year' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_entry_year
+                  type: named
+            id:
+              description: Update the 'id' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_id
+                  type: named
+            name:
+              description: Update the 'name' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_name
+                  type: named
+            student_number:
+              description: Update the 'student_number' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_student_number
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_updated_at
+                  type: named
+        update_students_by_student_number_response:
+          description: Responses from the 'update_students_by_student_number' procedure
+          fields:
+            affected_rows:
+              description: The number of rows affected by the mutation
+              type:
+                name: int4
+                type: named
+            returning:
+              description: Data from rows affected by the mutation
+              type:
+                element_type:
+                  name: students
+                  type: named
+                type: array
+        update_students_by_student_number_update_columns:
+          description: Update the columns of the 'students' collection
+          fields:
+            created_at:
+              description: Update the 'created_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_created_at
+                  type: named
+            department:
+              description: Update the 'department' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_department
+                  type: named
+            email:
+              description: Update the 'email' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_email
+                  type: named
+            entry_year:
+              description: Update the 'entry_year' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_entry_year
+                  type: named
+            id:
+              description: Update the 'id' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_id
+                  type: named
+            name:
+              description: Update the 'name' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_name
+                  type: named
+            student_number:
+              description: Update the 'student_number' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_student_number
+                  type: named
+            updated_at:
+              description: Update the 'updated_at' column in the 'students' collection.
+              type:
+                type: nullable
+                underlying_type:
+                  name: update_column_students_updated_at
+                  type: named
+      collections:
+        - name: courses
+          arguments: {}
+          type: courses
+          uniqueness_constraints:
+            courses_course_code_key:
+              unique_columns:
+                - course_code
+            courses_pkey:
+              unique_columns:
+                - id
+          foreign_keys: {}
+        - name: enrollments
+          arguments: {}
+          type: enrollments
+          uniqueness_constraints:
+            enrollments_pkey:
+              unique_columns:
+                - id
+            enrollments_student_id_course_id_key:
+              unique_columns:
+                - course_id
+                - student_id
+          foreign_keys:
+            enrollments_course_id_fkey:
+              column_mapping:
+                course_id: id
+              foreign_collection: courses
+            enrollments_student_id_fkey:
+              column_mapping:
+                student_id: id
+              foreign_collection: students
+        - name: students
+          arguments: {}
+          type: students
+          uniqueness_constraints:
+            students_email_key:
+              unique_columns:
+                - email
+            students_pkey:
+              unique_columns:
+                - id
+            students_student_number_key:
+              unique_columns:
+                - student_number
+          foreign_keys: {}
+      functions: []
+      procedures:
+        - name: delete_courses_by_course_code
+          description: Delete any row on the 'courses' collection using the 'course_code' key
+          arguments:
+            key_course_code:
+              type:
+                name: varchar
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+          result_type:
+            name: delete_courses_by_course_code_response
+            type: named
+        - name: delete_courses_by_id
+          description: Delete any row on the 'courses' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+          result_type:
+            name: delete_courses_by_id_response
+            type: named
+        - name: delete_enrollments_by_course_id_and_student_id
+          description: Delete any row on the 'enrollments' collection using the 'course_id' and 'student_id' keys
+          arguments:
+            key_course_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            key_student_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            pre_check:
+              description: Delete permission predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+          result_type:
+            name: delete_enrollments_by_course_id_and_student_id_response
+            type: named
+        - name: delete_enrollments_by_id
+          description: Delete any row on the 'enrollments' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+          result_type:
+            name: delete_enrollments_by_id_response
+            type: named
+        - name: delete_students_by_email
+          description: Delete any row on the 'students' collection using the 'email' key
+          arguments:
+            key_email:
+              type:
+                name: varchar
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+          result_type:
+            name: delete_students_by_email_response
+            type: named
+        - name: delete_students_by_id
+          description: Delete any row on the 'students' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+          result_type:
+            name: delete_students_by_id_response
+            type: named
+        - name: delete_students_by_student_number
+          description: Delete any row on the 'students' collection using the 'student_number' key
+          arguments:
+            key_student_number:
+              type:
+                name: varchar
+                type: named
+            pre_check:
+              description: Delete permission predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+          result_type:
+            name: delete_students_by_student_number_response
+            type: named
+        - name: insert_courses
+          description: Insert into the courses table
+          arguments:
+            objects:
+              type:
+                element_type:
+                  name: insert_courses_object
+                  type: named
+                type: array
+            post_check:
+              description: Insert permission predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+          result_type:
+            name: insert_courses_response
+            type: named
+        - name: insert_enrollments
+          description: Insert into the enrollments table
+          arguments:
+            objects:
+              type:
+                element_type:
+                  name: insert_enrollments_object
+                  type: named
+                type: array
+            post_check:
+              description: Insert permission predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+          result_type:
+            name: insert_enrollments_response
+            type: named
+        - name: insert_students
+          description: Insert into the students table
+          arguments:
+            objects:
+              type:
+                element_type:
+                  name: insert_students_object
+                  type: named
+                type: array
+            post_check:
+              description: Insert permission predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+          result_type:
+            name: insert_students_response
+            type: named
+        - name: update_courses_by_course_code
+          description: Update any row on the 'courses' collection using the 'course_code' key
+          arguments:
+            key_course_code:
+              type:
+                name: varchar
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+            update_columns:
+              type:
+                name: update_courses_by_course_code_update_columns
+                type: named
+          result_type:
+            name: update_courses_by_course_code_response
+            type: named
+        - name: update_courses_by_id
+          description: Update any row on the 'courses' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'courses' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: courses
+                  type: predicate
+            update_columns:
+              type:
+                name: update_courses_by_id_update_columns
+                type: named
+          result_type:
+            name: update_courses_by_id_response
+            type: named
+        - name: update_enrollments_by_course_id_and_student_id
+          description: Update any row on the 'enrollments' collection using the 'course_id' and 'student_id' keys
+          arguments:
+            key_course_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            key_student_id:
+              type:
+                type: nullable
+                underlying_type:
+                  name: int4
+                  type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+            update_columns:
+              type:
+                name: update_enrollments_by_course_id_and_student_id_update_columns
+                type: named
+          result_type:
+            name: update_enrollments_by_course_id_and_student_id_response
+            type: named
+        - name: update_enrollments_by_id
+          description: Update any row on the 'enrollments' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'enrollments' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: enrollments
+                  type: predicate
+            update_columns:
+              type:
+                name: update_enrollments_by_id_update_columns
+                type: named
+          result_type:
+            name: update_enrollments_by_id_response
+            type: named
+        - name: update_students_by_email
+          description: Update any row on the 'students' collection using the 'email' key
+          arguments:
+            key_email:
+              type:
+                name: varchar
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            update_columns:
+              type:
+                name: update_students_by_email_update_columns
+                type: named
+          result_type:
+            name: update_students_by_email_response
+            type: named
+        - name: update_students_by_id
+          description: Update any row on the 'students' collection using the 'id' key
+          arguments:
+            key_id:
+              type:
+                name: int4
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            update_columns:
+              type:
+                name: update_students_by_id_update_columns
+                type: named
+          result_type:
+            name: update_students_by_id_response
+            type: named
+        - name: update_students_by_student_number
+          description: Update any row on the 'students' collection using the 'student_number' key
+          arguments:
+            key_student_number:
+              type:
+                name: varchar
+                type: named
+            post_check:
+              description: Update permission post-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            pre_check:
+              description: Update permission pre-condition predicate over the 'students' collection
+              type:
+                type: nullable
+                underlying_type:
+                  object_type_name: students
+                  type: predicate
+            update_columns:
+              type:
+                name: update_students_by_student_number_update_columns
+                type: named
+          result_type:
+            name: update_students_by_student_number_response
+            type: named
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+          nested_fields:
+            filter_by: {}
+            order_by: {}
+          exists:
+            nested_collections: {}
+        mutation:
+          transactional: {}
+          explain: {}
+        relationships:
+          relation_comparisons: {}
+          order_by_aggregate: {}

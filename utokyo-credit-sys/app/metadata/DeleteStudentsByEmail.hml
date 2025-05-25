@@ -1,0 +1,72 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: DeleteStudentsByEmailResponse
+  description: Responses from the 'delete_students_by_email' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Students!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: DeleteStudentsByEmailResponse
+    inputTypeName: DeleteStudentsByEmailResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: delete_students_by_email_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: DeleteStudentsByEmailResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: DeleteStudentsByEmail
+  outputType: DeleteStudentsByEmailResponse!
+  arguments:
+    - name: keyEmail
+      type: String_1!
+    - name: preCheck
+      type: StudentsBoolExp
+      description: Delete permission predicate over the 'students' collection
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: delete_students_by_email
+    argumentMapping:
+      keyEmail: key_email
+      preCheck: pre_check
+  graphql:
+    rootFieldName: deleteStudentsByEmail
+    rootFieldKind: Mutation
+  description: Delete any row on the 'students' collection using the 'email' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: DeleteStudentsByEmail
+  permissions:
+    - role: admin
+      allowExecution: true
+

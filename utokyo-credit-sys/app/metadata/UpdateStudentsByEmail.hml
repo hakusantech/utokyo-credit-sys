@@ -1,0 +1,416 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsCreatedAt
+  description: Update the 'created_at' column in the 'students' collection
+  fields:
+    - name: set
+      type: Timestamptz
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsCreatedAt
+    inputTypeName: UpdateColumnStudentsCreatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_created_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsCreatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsDepartment
+  description: Update the 'department' column in the 'students' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsDepartment
+    inputTypeName: UpdateColumnStudentsDepartmentInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_department
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsDepartment
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsEmail
+  description: Update the 'email' column in the 'students' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsEmail
+    inputTypeName: UpdateColumnStudentsEmailInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_email
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsEmail
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsEntryYear
+  description: Update the 'entry_year' column in the 'students' collection
+  fields:
+    - name: set
+      type: Int32!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsEntryYear
+    inputTypeName: UpdateColumnStudentsEntryYearInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_entry_year
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsEntryYear
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsId
+  description: Update the 'id' column in the 'students' collection
+  fields:
+    - name: set
+      type: Int32!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsId
+    inputTypeName: UpdateColumnStudentsIdInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_id
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsId
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsName
+  description: Update the 'name' column in the 'students' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsName
+    inputTypeName: UpdateColumnStudentsNameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_name
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsName
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsStudentNumber
+  description: Update the 'student_number' column in the 'students' collection
+  fields:
+    - name: set
+      type: String_1!
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsStudentNumber
+    inputTypeName: UpdateColumnStudentsStudentNumberInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_student_number
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsStudentNumber
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateColumnStudentsUpdatedAt
+  description: Update the 'updated_at' column in the 'students' collection
+  fields:
+    - name: set
+      type: Timestamptz
+      description: Set the column to this value
+  graphql:
+    typeName: UpdateColumnStudentsUpdatedAt
+    inputTypeName: UpdateColumnStudentsUpdatedAtInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_column_students_updated_at
+      fieldMapping:
+        set:
+          column:
+            name: _set
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateColumnStudentsUpdatedAt
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - set
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateStudentsByEmailUpdateColumns
+  description: Update the columns of the 'students' collection
+  fields:
+    - name: createdAt
+      type: UpdateColumnStudentsCreatedAt
+      description: Update the 'created_at' column in the 'students' collection.
+    - name: department
+      type: UpdateColumnStudentsDepartment
+      description: Update the 'department' column in the 'students' collection.
+    - name: email
+      type: UpdateColumnStudentsEmail
+      description: Update the 'email' column in the 'students' collection.
+    - name: entryYear
+      type: UpdateColumnStudentsEntryYear
+      description: Update the 'entry_year' column in the 'students' collection.
+    - name: id
+      type: UpdateColumnStudentsId
+      description: Update the 'id' column in the 'students' collection.
+    - name: name
+      type: UpdateColumnStudentsName
+      description: Update the 'name' column in the 'students' collection.
+    - name: studentNumber
+      type: UpdateColumnStudentsStudentNumber
+      description: Update the 'student_number' column in the 'students' collection.
+    - name: updatedAt
+      type: UpdateColumnStudentsUpdatedAt
+      description: Update the 'updated_at' column in the 'students' collection.
+  graphql:
+    typeName: UpdateStudentsByEmailUpdateColumns
+    inputTypeName: UpdateStudentsByEmailUpdateColumnsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_students_by_email_update_columns
+      fieldMapping:
+        createdAt:
+          column:
+            name: created_at
+        department:
+          column:
+            name: department
+        email:
+          column:
+            name: email
+        entryYear:
+          column:
+            name: entry_year
+        id:
+          column:
+            name: id
+        name:
+          column:
+            name: name
+        studentNumber:
+          column:
+            name: student_number
+        updatedAt:
+          column:
+            name: updated_at
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateStudentsByEmailUpdateColumns
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - createdAt
+          - department
+          - email
+          - entryYear
+          - id
+          - name
+          - studentNumber
+          - updatedAt
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: UpdateStudentsByEmailResponse
+  description: Responses from the 'update_students_by_email' procedure
+  fields:
+    - name: affectedRows
+      type: Int32!
+      description: The number of rows affected by the mutation
+    - name: returning
+      type: "[Students!]!"
+      description: Data from rows affected by the mutation
+  graphql:
+    typeName: UpdateStudentsByEmailResponse
+    inputTypeName: UpdateStudentsByEmailResponseInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: pg_utokyo
+      dataConnectorObjectType: update_students_by_email_response
+      fieldMapping:
+        affectedRows:
+          column:
+            name: affected_rows
+        returning:
+          column:
+            name: returning
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: UpdateStudentsByEmailResponse
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - affectedRows
+          - returning
+
+---
+kind: Command
+version: v1
+definition:
+  name: UpdateStudentsByEmail
+  outputType: UpdateStudentsByEmailResponse!
+  arguments:
+    - name: keyEmail
+      type: String_1!
+    - name: postCheck
+      type: StudentsBoolExp
+      description: Update permission post-condition predicate over the 'students' collection
+    - name: preCheck
+      type: StudentsBoolExp
+      description: Update permission pre-condition predicate over the 'students' collection
+    - name: updateColumns
+      type: UpdateStudentsByEmailUpdateColumns!
+  source:
+    dataConnectorName: pg_utokyo
+    dataConnectorCommand:
+      procedure: update_students_by_email
+    argumentMapping:
+      keyEmail: key_email
+      postCheck: post_check
+      preCheck: pre_check
+      updateColumns: update_columns
+  graphql:
+    rootFieldName: updateStudentsByEmail
+    rootFieldKind: Mutation
+  description: Update any row on the 'students' collection using the 'email' key
+
+---
+kind: CommandPermissions
+version: v1
+definition:
+  commandName: UpdateStudentsByEmail
+  permissions:
+    - role: admin
+      allowExecution: true
+
